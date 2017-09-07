@@ -2,25 +2,91 @@
 layout: default
 ---
 
-<div class="home">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  {{ content }}
+<!--
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
+convert crew.jpg -resize 770 crew-770.jpg;
+convert crew.jpg -resize 1000 crew-1000.jpg;
+convert crew.jpg -resize 1500 crew-1500.jpg;
+convert crew.jpg -resize 2500 crew-2500.jpg;
 
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+-->
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+<section class="hero is-transparent is-primary is-medium ub-home-hero">
+  <div class="ub-color-overlay"></div>
+  <!-- Hero header: will stick at the top -->
+  <div class="hero-head">
+     {% include header.html %}
+    
+  </div>
 
-</div>
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-4 ub-home-title has-text-centered	">
+         {{page.tagline}} 
+      </h1>
+      <h2 class="has-text-centered">
+        <a class="button ub-pill" href="#">
+          <span>{{page.mainbutton}}</span>
+        </a>
+      </h2>
+    </div>
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <!-- <div class="hero-foot">
+    <nav class="tabs">
+      <div class="container">
+        <ul>
+          <li class="is-active"><a>Overview</a></li>
+          <li><a>Modifiers</a></li>
+          <li><a>Grid</a></li>
+          <li><a>Elements</a></li>
+          <li><a>Components</a></li>
+          <li><a>Layout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div> -->
+</section>
+
+<section class="section">
+  <div class="container content ub-content ub-top-content">
+    <div class="columns">
+      <div class="column"></div>
+      <div class="column is-two-thirds">
+        <h1 class="title has-text-centered">{{page.leadtext}}</h1>
+        {{content}}
+        </div>
+      <div class="column"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content ub-content">
+    <div class="columns">
+{% for post in site.leadstories %}
+  <!-- link to each post in index.html -->
+  {% comment %} <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a> {% endcomment %}
+  <div class="column">
+    <figure class="image is-square">
+      <img src="{{post.img}}" alt="tmp">
+      <!-- 
+        tablet only:
+        <img src="http://via.placeholder.com/800x800" alt="tmp"> 
+      -->
+    </figure>
+    <h1 class="title has-text-centered">{{post.title}}</h1>
+    {{post.content}}
+    <p class="has-text-centered"><a href="{{post.href}}">{{post.linktitle}}</a></p>
+  </div>
+{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <!-- Spacer  -->
+</section>
